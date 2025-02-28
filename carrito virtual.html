@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Cuentos Cortos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Generador de Cuentos Cortos</h1>
+    <div id="opciones">
+        <label for="personaje">Personaje:</label>
+        <input type="text" id="personaje" value="un valiente caballero"><br><br>
+
+        <label for="lugar">Lugar:</label>
+        <input type="text" id="lugar" value="un bosque encantado"><br><br>
+
+        <label for="objeto">Objeto:</label>
+        <input type="text" id="objeto" value="una espada mágica"><br><br>
+
+        <button id="generar">Generar Cuento</button>
+    </div>
+    <div id="cuento"></div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#opciones {
+    margin-bottom: 20px;
+}
+
+#cuento {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+#generar {
+    background-color: #ff8000; /* Color de fondo inicial */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+#generar:hover {
+    background-color: tomato; /* Color al pasar el mouse */
+}
+
+#generar:active {
+    background-color: red; /* Color al hacer clic */
+}
+
+
+
+document.getElementById('generar').addEventListener('click', generarCuento);
+
+function generarCuento() {
+    // Obtener valores de entrada
+    let personaje = document.getElementById('personaje').value;
+    let lugar = document.getElementById('lugar').value;
+    let objeto = document.getElementById('objeto').value;
+
+    // Listas para la historia
+    let inicios = [
+        `En el corazón de ${lugar}, vivía ${personaje}.`,
+        `${personaje} se aventuró en ${lugar} en busca de aventuras.`,
+        `Una vez, en ${lugar}, ${personaje} encontró ${objeto}.`
+    ];
+    let eventos = [
+        `De repente, ${personaje} se encontró con un dragón.`,
+        `${personaje} usó ${objeto} para resolver un misterio.`,
+        `${personaje} descubrió un pasadizo secreto.`
+    ];
+    let finales = [
+        `Y así, ${personaje} vivió feliz para siempre.`,
+        `La leyenda de ${personaje} y ${objeto} perduró por generaciones.`,
+        `${personaje} regresó a casa como un héroe.`
+    ];
+
+    // Generar índice aleatorio
+    let indiceInicio = Math.floor(Math.random() * inicios.length);
+    let indiceEvento = Math.floor(Math.random() * eventos.length);
+    let indiceFinal = Math.floor(Math.random() * finales.length);
+
+    // Construir el cuento
+    let cuentoGenerado = `${inicios[indiceInicio]} ${eventos[indiceEvento]} ${finales[indiceFinal]}`;
+
+    // Mostrar el cuento
+    document.getElementById('cuento').textContent = cuentoGenerado;
+}
